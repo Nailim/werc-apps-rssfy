@@ -1,0 +1,16 @@
+fn conf_enable_rssfy{
+    rssfy_root=`{pwd}
+    rssfy_base_uri=$conf_wd
+
+	conf_enable_app rssfy
+}
+
+fn rssfy_init {
+	if(~ $req_path $rssfy_base_uri^index.rss){
+        handler_body_main=NOT_USED_by_rssfy_feeds
+        res_tail=()
+        http_content_type='text/xml; charset=utf-8'
+        headers=()
+        master_template=apps/rssfy/rss.tpl
+    }
+}
